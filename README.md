@@ -4,13 +4,13 @@ Exercícios práticos em Python do curso **Welcome to the Django**. Criado pela 
 
 ## Ordem sugerida de complexidade crescente
 
-1. basic
-    1. string1
-    2. list1
-    3. string2
-    4. list2
-    5. mimic
-    6. wordcount
-2. babynames
-3. logpuzzle
-4. copyspecial
+1. [ ] [basic](/basic/)
+    1. [ ] [string1.py](/basic/list1.py)
+    2. [ ] [list1.py](/basic/list1.py)
+    3. [ ] [string2.py](/basic/string2.py)
+    4. [ ] [list2.py](/basic/list2.py)
+    5. [ ] [mimic.py](/basic/mimic.py)
+    6. [ ] [wordcount.py](/basic/workcount.py)
+2. [ ] [babynames](/babynames/)
+3. [ ] [logpuzzle](/logpuzzle/)
+4. [ ] [copyspecial](/copyspecial/)
