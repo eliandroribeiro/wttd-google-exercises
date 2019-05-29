@@ -5,7 +5,7 @@ Exercícios práticos em Python do curso **Welcome to the Django**. Criado pela 
 ## Ordem sugerida de complexidade crescente
 
 1. [ ] [basic](/basic/)
-    1. [ ] [string1.py](/basic/string1.py)
+    1. [x] [string1.py](/basic/string1.py)
     2. [ ] [list1.py](/basic/list1.py)
     3. [ ] [string2.py](/basic/string2.py)
     4. [ ] [list2.py](/basic/list2.py)
