@@ -7,7 +7,7 @@ Exercícios práticos em Python do curso **Welcome to the Django**. Criado pela 
 1. [ ] [basic](/basic/)
     1. [x] [string1.py](/basic/string1.py)
     2. [x] [list1.py](/basic/list1.py)
-    3. [ ] [string2.py](/basic/string2.py)
+    3. [x] [string2.py](/basic/string2.py)
     4. [ ] [list2.py](/basic/list2.py)
     5. [ ] [mimic.py](/basic/mimic.py)
     6. [ ] [wordcount.py](/basic/workcount.py)
