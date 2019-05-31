@@ -44,8 +44,22 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-    # +++your code here+++
-    return
+    
+    def divide_ao_meio(s):
+        metade = 0
+        tamanho = len(s)
+        
+        if tamanho % 2: # ímpar
+            metade = (tamanho + 1) / 2
+        else: # par
+            metade = tamanho / 2
+
+        metade = int(metade)
+        return (s[:metade], s[metade:])
+
+    a_dividida = divide_ao_meio(a)
+    b_dividida = divide_ao_meio(b)
+    return f'{a_dividida[0]}{b_dividida[0]}{a_dividida[1]}{b_dividida[1]}'
 
 
 # Simple provided test() function used in main() to print
