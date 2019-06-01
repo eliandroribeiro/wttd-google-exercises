@@ -45,6 +45,42 @@ import sys
 # You could write a helper utility function that reads a file
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
+def print_words(filename):
+    palavras = le_arquivo(filename)
+    contagem = conta_palavras(palavras)
+    imprime_contagem(contagem)
+
+
+def print_top(filename):
+    palavras = le_arquivo(filename)
+    contagem = conta_palavras(palavras)
+    decrescente = sorted(contagem.items(), key=lambda item: item[1], reverse=True)
+    top = dict(decrescente[:20])
+    imprime_contagem(top)
+
+
+def le_arquivo(caminho):
+    with open(caminho, 'r') as arquivo:
+        conteudo = arquivo.read()
+        return conteudo.lower().split()
+
+
+def conta_palavras(palavras):
+    contagem = {}
+
+    for palavra in palavras:
+        if palavra in contagem:
+            contagem[palavra] += 1
+        else:
+            contagem[palavra] = 1
+
+    return contagem
+
+
+def imprime_contagem(contagem):
+    for palavra, quantidade in contagem.items():
+        print(f'{palavra} {quantidade}')
+
 
 ###
 
