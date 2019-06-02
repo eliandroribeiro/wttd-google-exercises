@@ -27,11 +27,11 @@ Here's what the html looks like in the baby.html files:
 ...
 
 Suggested milestones for incremental development:
- -Extract the year and print it
- -Extract the names and rank numbers and just print them
- -Get the names data into a dict and print it
- -Build the [year, 'name rank', ... ] list and print it
- -Fix main() to use the extract_names list
+OK -Extract the year and print it
+   -Extract the names and rank numbers and just print them
+   -Get the names data into a dict and print it
+   -Build the [year, 'name rank', ... ] list and print it
+   -Fix main() to use the extract_names list
 """
 
 
@@ -41,8 +41,28 @@ def extract_names(filename):
     followed by the name-rank strings in alphabetical order.
     ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
     """
-    # +++your code here+++
-    return
+    
+    with open(filename, 'r') as arquivo:
+        conteudo = arquivo.read()
+
+    ano = extrai_ano(conteudo)
+    nomes = extrai_nomes_ranqueados_ordenados(conteudo)
+
+    return [ano] + nomes
+
+
+def extrai_ano(conteudo):
+    pattern = re.compile(r'>Popularity in (\d{4})</')
+    match = pattern.search(conteudo)
+    ano = match[1]
+    return ano
+
+
+def extrai_nomes_ranqueados_ordenados(conteudo):
+    # Padrão rank e nomes
+    r'^<tr align="right"><td>(\d+)</td><td>(\w+)</td><td>(\w+)</td>$'
+
+    return []
 
 
 def main():
@@ -61,9 +81,10 @@ def main():
         summary = True
         del args[0]
 
-        # +++your code here+++
-        # For each filename, get the names, then either print the text output
-        # or write it to a summary file
+    nomes = extract_names(args[0])
+    print(nomes)
+    # For each filename, get the names, then either print the text output
+    # or write it to a summary file
 
 
 if __name__ == '__main__':
