@@ -24,7 +24,20 @@ def read_urls(filename):
     extracting the hostname from the filename itself.
     Screens out duplicate urls and returns the urls sorted into
     increasing order."""
-    # +++your code here+++
+
+    with open(filename, 'r') as arquivo:
+        conteudo = arquivo.read()
+
+    hostname = filename.split('_')[-1]
+    urls_unicas = set()
+    pattern = re.compile(r'(?:GET )(/[\w\d\./-]+/puzzle/[\w\d\./-]+) ')
+
+    for match in pattern.finditer(conteudo):
+        url = hostname + match[1]
+        urls_unicas.add(url)
+
+    urls = sorted(urls_unicas)
+    return urls
 
 
 def download_images(img_urls, dest_dir):
