@@ -12,5 +12,5 @@ Exercícios práticos em Python do curso **Welcome to the Django**. Criado pela 
     5. [x] [mimic.py](/basic/mimic.py)
     6. [x] [wordcount.py](/basic/wordcount.py)
 2. [x] [babynames](/babynames/babynames.py)
-3. [ ] [logpuzzle](/logpuzzle/logpuzzle.py)
+3. [x] [logpuzzle](/logpuzzle/logpuzzle.py)
 4. [ ] [copyspecial](/copyspecial/copyspecial.py)
