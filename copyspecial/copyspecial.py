@@ -15,14 +15,52 @@ import re
 import os
 import shutil
 import subprocess
+import logging
 
 """Copy Special exercise
 
+The copyspecial.py program takes one or more directories as its arguments.
+We'll say that a "special" file is one where the name contains the pattern __w__ somewhere,
+where the w is one or more word chars.
+The provided main() includes code to parse the command line arguments, but the rest is up to you.
+Write functions to implement the features below and modify main() to call your functions.
 """
 
 
-# +++your code here+++
-# Write functions and modify main() to call them
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(levelname)s %(asctime)s - %(message)s')
+logger = logging.getLogger()
+
+
+def get_special_paths(dirs):
+    '''Gather a list of the absolute paths of the special files in all the directories.'''
+    logger.info(f'get_special_paths({dirs})')
+
+    # We'll assume that names are not repeated across the directories
+    # (optional: check that assumption and error out if it's violated).
+
+    return []
+
+
+def copy_to(paths, dir):
+    '''If the "--todir dir" option is present at the start of the command line,
+    do not print anything and instead copy the files to the given directory,
+    creating it if necessary.'''
+    logger.info(f'copy_to({paths}, {dir})')
+
+    # Use the python module "shutil" for file copying.
+
+    # If the child process exits with an error code, exit with an error code and print the command's output.
+    # Test this by trying to write a zip file to a directory that does not exist.
+
+
+def zip_to(paths, zippath):
+    '''If the "--tozip zipfile" option is present at the start of the command line,
+    run this command: "zip -j zipfile <list all the files>".
+    This will create a zipfile containing the files.'''
+    logger.info(f'zip_to({paths}, {zippath})')
+
+    # Just for fun/reassurance, also print the command line you are going to do first.
 
 
 def main():
@@ -53,8 +91,18 @@ def main():
         print("error: must specify one or more dirs")
         sys.exit(1)
 
-        # +++your code here+++
-        # Call your functions
+    paths = get_special_paths(args)
+
+    # In the simplest case, just print that list. Print one absolute path per line.
+    if not todir and not tozip:
+        print('\n'.join(paths))
+        sys.exit(0)
+
+    if todir:
+        copy_to(paths, todir)
+
+    if tozip:
+        zip_to(paths, tozip)
 
 
 if __name__ == "__main__":
