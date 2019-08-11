@@ -16,6 +16,7 @@ import os
 import shutil
 import subprocess
 import logging
+from errno import EEXIST
 
 """Copy Special exercise
 
@@ -36,10 +37,41 @@ def get_special_paths(dirs):
     '''Gather a list of the absolute paths of the special files in all the directories.'''
     logger.info(f'get_special_paths({dirs})')
 
-    # We'll assume that names are not repeated across the directories
-    # (optional: check that assumption and error out if it's violated).
+    pattern = re.compile(r'^.*__\w+__.*$')
+    especiais = []
+    unicos = set()
 
-    return []
+    try:
+        for d in dirs:
+            if not os.path.isdir(d):
+                logger.warning(f'Argumento {d} ignorado. Não é um diretório.')
+                continue
+
+            logger.debug(f'\\  {d}')
+            arqs = os.listdir(d)
+
+            for arq in arqs:
+                caminho = os.path.abspath(os.path.join(d, arq))
+
+                # We'll assume that names are not repeated across the directories
+                # (optional: check that assumption and error out if it's violated).
+                if arq not in unicos:
+                    unicos.add(arq)
+                else:
+                    raise FileExistsError(EEXIST, os.strerror(EEXIST), arq, None, caminho)
+
+                if os.path.isfile(caminho) and pattern.match(arq):
+                    logger.debug(f' |- {arq}')
+                    especiais.append(caminho)
+    except FileExistsError as e:
+        print(f'Processo interrompido. Nome de arquivo duplicado: "{arq}".\n'
+              f'Sugestão: renomeie o arquivo "{e.filename2}".')
+        sys.exit(e.errno)
+    except OSError as e:
+        print(e)
+        print('Continuando...')
+
+    return especiais
 
 
 def copy_to(paths, dir):
