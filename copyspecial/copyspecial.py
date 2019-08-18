@@ -80,10 +80,11 @@ def copy_to(paths, dir):
     creating it if necessary.'''
     logger.info(f'copy_to({paths}, {dir})')
 
-    # Use the python module "shutil" for file copying.
+    os.makedirs(dir, exist_ok=True)
 
-    # If the child process exits with an error code, exit with an error code and print the command's output.
-    # Test this by trying to write a zip file to a directory that does not exist.
+    # Use the python module "shutil" for file copying.
+    for caminho in paths:
+        shutil.copy2(caminho, dir, follow_symlinks=False)
 
 
 def zip_to(paths, zippath):
@@ -93,6 +94,9 @@ def zip_to(paths, zippath):
     logger.info(f'zip_to({paths}, {zippath})')
 
     # Just for fun/reassurance, also print the command line you are going to do first.
+
+    # If the child process exits with an error code, exit with an error code and print the command's output.
+    # Test this by trying to write a zip file to a directory that does not exist.
 
 
 def main():
