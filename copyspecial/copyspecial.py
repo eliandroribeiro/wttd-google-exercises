@@ -94,9 +94,18 @@ def zip_to(paths, zippath):
     logger.debug(f'zip_to({paths}, {zippath})')
 
     # Just for fun/reassurance, also print the command line you are going to do first.
+    cmd = f'zip -j {zippath} ' + ' '.join(paths)
+    logger.debug(cmd)
 
     # If the child process exits with an error code, exit with an error code and print the command's output.
     # Test this by trying to write a zip file to a directory that does not exist.
+    try:
+        resultado = subprocess.run(cmd, capture_output=True, check=True, shell=True, text=True)
+        print(resultado.stdout)
+    except subprocess.CalledProcessError as e:
+        print(e)
+        print(e.output)
+        sys.exit(e.returncode)
 
 
 def main():
