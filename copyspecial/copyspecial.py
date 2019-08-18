@@ -35,7 +35,7 @@ logger = logging.getLogger()
 
 def get_special_paths(dirs):
     '''Gather a list of the absolute paths of the special files in all the directories.'''
-    logger.info(f'get_special_paths({dirs})')
+    logger.debug(f'get_special_paths({dirs})')
 
     pattern = re.compile(r'^.*__\w+__.*$')
     especiais = []
@@ -78,7 +78,7 @@ def copy_to(paths, dir):
     '''If the "--todir dir" option is present at the start of the command line,
     do not print anything and instead copy the files to the given directory,
     creating it if necessary.'''
-    logger.info(f'copy_to({paths}, {dir})')
+    logger.debug(f'copy_to({paths}, {dir})')
 
     os.makedirs(dir, exist_ok=True)
 
@@ -91,7 +91,7 @@ def zip_to(paths, zippath):
     '''If the "--tozip zipfile" option is present at the start of the command line,
     run this command: "zip -j zipfile <list all the files>".
     This will create a zipfile containing the files.'''
-    logger.info(f'zip_to({paths}, {zippath})')
+    logger.debug(f'zip_to({paths}, {zippath})')
 
     # Just for fun/reassurance, also print the command line you are going to do first.
 
